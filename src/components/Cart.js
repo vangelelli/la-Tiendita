@@ -30,6 +30,7 @@ const Cart = () => {
                    <h3> Total de Productos {cart.map(item=> item.cantidad).reduce((a,b) => a + b)}</h3>
                    <h3>Precio Total {cart.map(item => item.price * item.cantidad).reduce((a,b) => a + b)}</h3>
                    <button onClick={vaciarCarrito}> Vaciar el Carrito</button>
+                   <button> Terminar Compra</button>
                </>        
            )}
        </>

@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 import CartWidget from '../CartWidget';  // primero importo el componente y despues lo ubico  <CartWidget />, para poder reutilizarlo 
 import '../CartWidget.css';
 import { Link } from 'react-router-dom';
+import './NavBar.css'
 
 
 export default function NavBar() {  // mi primer componente
@@ -39,8 +40,9 @@ export default function NavBar() {  // mi primer componente
                              </NavLink>
                          </li>
                      </ul>
-                     <NavLink to='/cart'>
+                     <NavLink to='/cart' className={"carrito"}>
                          <img  src="./images/carrito.png"  width='40px'></img>
+                         <CartWidget />
                      </NavLink>
                  </div>
              </div>      

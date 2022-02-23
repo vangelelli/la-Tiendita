@@ -6,7 +6,7 @@ const products = [
         price: 450,
         pictureUrl: 'https://gobar.vteximg.com.br/arquivos/ids/157557-1000-1000/PATAGONIA-AMER-LAGER-BOTELLA-710CC.jpg?v=637235189774470000',
         category: 'cervezas',
-        stock: 5,
+        
     },
     {
         id: 2,
@@ -15,7 +15,7 @@ const products = [
         price: 2000,
         pictureUrl: 'https://gobar.vteximg.com.br/arquivos/ids/155727-1000-1000/01032500006.jpg?v=636684929975600000',
         category: 'destilados',
-        stock: 5,
+        
     },
     {
         id: 3,
@@ -24,7 +24,7 @@ const products = [
         price: 3400,
         pictureUrl: 'https://gobar.vteximg.com.br/arquivos/ids/156008-1000-1000/01082800278.jpg?v=636690977401900000', 
         category: 'vinos',
-        stock: 5,
+        
     },
 ];
 

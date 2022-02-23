@@ -5,7 +5,6 @@ import NavBar from './components/navegacion/NavBar';
 import ItemListContainer from './components/ItemListContainer';
 import ItemDetailContainer from './components/ItemDetailContainer';
 import CartContextProvider from './context/CartContext'
-import CartWidget from './components/CartWidget';
 import Cart from './components/Cart';
 
 function App() {     // es un componente contenderor y tiene una logica
@@ -37,12 +36,8 @@ function App() {     // es un componente contenderor y tiene una logica
                    element={<ItemDetailContainer />}
                  />
 
-                 <Route 
-                   path="/cart" 
-                   element= {<CartWidget />} 
-                  />
 
-                  <Route path="/cart" component={<Cart />} 
+                  <Route path="/cart" element={<Cart />} 
                   
                   />
 
