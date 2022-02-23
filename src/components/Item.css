@@ -1,0 +1,28 @@
+.itemContainer {
+    border : 5px solid #D3D3D3 ;
+    border-radius: 1px;
+    grid-template-columns: repeat(3, 1fr);
+    margin-top: 1rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+
+}
+
+.itemContainer a {
+    color: black;
+    text-decoration: none;
+}
+.title {
+  font-size: 1.5rem;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  text-align: center;
+}
+.price {
+    font-weight: bolder;
+    margin: 0%;
+}
+.description{
+    margin-bottom: 1rem;
+    font-weight: bold;
+    text-align: center;
+}
