@@ -42,7 +42,7 @@ function App() {     // es un componente contenderor y tiene una logica
                    element= {<CartWidget />} 
                   />
 
-                  <Route path="/cart" component={Cart} 
+                  <Route path="/cart" component={<Cart />} 
                   
                   />
 

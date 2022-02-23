@@ -26,7 +26,9 @@ const CartWidget = () => {
                      </div>
                      // desde el cartwidget creamos la funcion deleteItem y le pasamos la funcion por parametros
                    ))}
-                   <button onClick={vaciarCarrito}> Vaciar carrito </button>
+                   <h3> Total de Productos {cart.map(item=> item.cantidad).reduce((a,b) => a + b)}</h3>
+                   <h3>Precio Total {cart.map(item => item.price * item.cantidad).reduce((a,b) => a + b)}</h3>
+                   <button onClick={vaciarCarrito}> Vaciar el Carrito</button>
                </>        
            )}
        </>

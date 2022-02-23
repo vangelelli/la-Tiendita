@@ -1,5 +1,5 @@
-
-.imagenCarrito {
-    padding-right: 40px;
-    text-align: right;
+.fa-shopping-cart span {
+    font-family: montserrat, sans-serif;
+    padding: 0 .5rem;
+    font-weight: 500;
 }
