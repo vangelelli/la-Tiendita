@@ -33,22 +33,17 @@ export default function ItemListContainer({ greeting }) {
         console.log(error);
      });
     },  [categoryName]);
-    // creo un array de dependencias( se ejecuta lo que esta adentro cada vez que una de estas dependecias cambien)
+    
   
+    /*
     function onAddItem(itemCount) {
         console.log(itemCount);
     }
-   
-
+    */
     return (
         <div >
-            
             <p className='saludo'>  {greeting}</p>
-
             { products.length > 0 ? <ItemList products={products} /> : <p>Cargando..</p>}    
-
-            
-            
         </div>
     )
 }

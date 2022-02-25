@@ -1,44 +1,25 @@
-const products = [
-    {
-        id: 1,
-        title: 'Cerveza Patagonia Amber Lager',
-        description: 'Cerveza Roja.',
-        price: 450,
-        pictureUrl: 'https://gobar.vteximg.com.br/arquivos/ids/157557-1000-1000/PATAGONIA-AMER-LAGER-BOTELLA-710CC.jpg?v=637235189774470000',
-        category: 'cervezas',
-        
-    },
-    {
-        id: 2,
-        title: 'Vodka Absolut Raspberry',
-        description: 'Vodka de Frutos Rojos.',
-        price: 2000,
-        pictureUrl: 'https://gobar.vteximg.com.br/arquivos/ids/155727-1000-1000/01032500006.jpg?v=636684929975600000',
-        category: 'destilados',
-        
-    },
-    {
-        id: 3,
-        title: 'Vino El Enemigo ',
-        description: 'Malbec Argentino.',
-        price: 3400,
-        pictureUrl: 'https://gobar.vteximg.com.br/arquivos/ids/156008-1000-1000/01082800278.jpg?v=636690977401900000', 
-        category: 'vinos',
-        
-    },
-];
+import { getDocs, collection } from 'firebase/firestore';
+import { db } from '../firebase';
 
-const promesa = new Promise(function(resolve, reject) {
-    
-    setTimeout(function () {
-      resolve(products);
-    }, 500);
-});
-
-// el getProducts me va a retornar la promesa que estoy creando arriba
 function getProducts() {
-    return promesa;
+    return new Promise((resolve, reject) => {
+      
+      const itemsCollection = collection(db, "products");
+      getDocs(itemsCollection)
+      .then(snapshot => {
+          // el doc.data le pide a firestore todos los documentos de producst. El punto map es porqe importa una coleccion
+          const products = snapshot.docs.map( (doc) => ({ id: doc.id, ...doc.data() }))
+          resolve(products)
+          console.log(products)
+          
+       })
+      .catch(error => {
+          console.log(error)
+          reject(error)
+       })
+    })
 }
+      
 // exportamos la funciones que necestio
 export {
     getProducts,

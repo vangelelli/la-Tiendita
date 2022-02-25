@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getProducts } from "../api/api";
 import ItemDetail from './ItemDetail';
+import { doc, getDoc } from "firebase/firestore";
+import { db } from "../firebase";
 
 export default function ItemDetailContainer() {
 
@@ -11,15 +12,22 @@ export default function ItemDetailContainer() {
     const { itemId } = useParams();
 
     useEffect(() => {
+        
+        // el itemRef hace la referencia a mi documento, para conocer el nombre de la coleccion y mi id 
+        const itemRef = doc(db, "products", itemId);
+        getDoc(itemRef)
+        .then((snapshot) => {
 
-        getProducts().then((products) => {
-            const product = products.find((i) => i.id === Number(itemId));
-            setProducts(product);
-        }).catch((error) => {
-            console.log(error);
-        });
+            if(snapshot.exists()) {
+                setProducts({ id: snapshot.id, ...snapshot.data()})
+            }
+        })
+        .catch(error => {
+            console.log(error)
+        })
         
     }, [itemId]);
+
 
     return (
         <div>
