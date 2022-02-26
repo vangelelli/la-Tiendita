@@ -16,22 +16,17 @@ export default function ItemListContainer({ greeting }) {
 
    // cuando se monte el componente, voy a buscar los productos
    useEffect(() => {
-
     // tengo que obtener los productos
-    getProducts().then((products) => {
-        if (!categoryName) {    // si la categoria es false largame todos los items, si es true mandame a esa categoria
-            setProducts(products);
-        } else {
-         const itemsPorCategoria = products.filter((producto) => {
-            return producto.category === categoryName;
-         });
-
-         setProducts(itemsPorCategoria);  // generamos esto para que se guarden los productos
-        }
-
-     }).catch((error) => {
-        console.log(error);
-     });
+    getProducts(categoryName)
+     .then(snapshot => {
+          // el doc.data le pide a firestore todos los documentos de producst. El punto map es porqe importa una coleccion
+          const productsMap = snapshot.docs.map( (doc) => ({ id: doc.id, ...doc.data() }))
+          setProducts(productsMap)
+       })
+      .catch(error => {
+          console.log(error)
+       })
+       .finally(() => console.log('fin promesa'))
     },  [categoryName]);
     
   
