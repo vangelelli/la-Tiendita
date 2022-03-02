@@ -6,6 +6,7 @@ import ItemListContainer from './components/ItemListContainer';
 import ItemDetailContainer from './components/ItemDetailContainer';
 import CartContextProvider from './context/CartContext'
 import Cart from './components/Cart';
+import AddItemContainer from './components/AddItemContainer';
 
 function App() {     // es un componente contenderor y tiene una logica
 
@@ -21,26 +22,32 @@ function App() {     // es un componente contenderor y tiene una logica
          <main>
             <div>
               <Routes>
+                 { /* Esta es la pantalla del home y mostramos los componenetes del ItemLIstContainer*/}
                  <Route
                   path="/" 
                   element={ <ItemListContainer greeting="Hola! Bienvenido, y hoy, que tenes ganas de tomar?" />}
                  /> 
-
+                 { /*Esta pantalla muestra el listado de los items filtrados por categoria*/}
                  <Route
                    path="/category/:categoryName"
                    element= { <ItemListContainer greeting={"Variedades con las que contamos"}/>}
                  />
-
+                 { /*Esta es la pantalla de cada uno de los productos*/}
                  <Route
                    path="/producto/:itemId"
                    element={<ItemDetailContainer />}
                  />
-
+                 { /*Esta es la pantalla para agregar productos */}
+                 <Route
+                   exact
+                   path="/item/add"
+                   element={<AddItemContainer />}
+                 />
 
                   <Route path="/cart" element={<Cart />} 
-                  
                   />
 
+                 { /*simularia una pagina 404 no encontrada*/}
                  <Route 
                    path="*"
                    element= {
