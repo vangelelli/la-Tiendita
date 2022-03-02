@@ -29,6 +29,7 @@ function App() {     // es un componente contenderor y tiene una logica
                  /> 
                  { /*Esta pantalla muestra el listado de los items filtrados por categoria*/}
                  <Route
+                   exact
                    path="/category/:categoryName"
                    element= { <ItemListContainer greeting={"Variedades con las que contamos"}/>}
                  />

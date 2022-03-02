@@ -1,5 +1,8 @@
 .carrito {
- display: flex;
-
+  display: flex;
 }
 
+a {
+  text-decoration: none;
+  color: black;
+}

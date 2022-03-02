@@ -1,6 +1,4 @@
-.fa-shopping-cart span {
-    font-family: montserrat, sans-serif;
-    padding: 0 .5rem;
-    font-weight: 500;
-    align-self: center;
+.cart-icon {
+  padding: 0 0.5rem;
+  align-self: center;
 }
