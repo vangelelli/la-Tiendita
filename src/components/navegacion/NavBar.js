@@ -1,12 +1,11 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import CartWidget from "../CartWidget"; // primero importo el componente y despues lo ubico  <CartWidget />, para poder reutilizarlo
+import CartWidget from "../CartWidget";
 import { Link } from "react-router-dom";
 import cerveza from "../../images/cerveza.png";
 import "./NavBar.css";
 
 export default function NavBar() {
-  // mi primer componente
   return (
     <div>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">

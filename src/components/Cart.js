@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { CartContext } from "../context/CartContext";
+import "./Cart.css";
 
 const Cart = () => {
   const { cart, vaciarCarrito, deleteItem } = useContext(CartContext);
@@ -42,19 +43,23 @@ const Cart = () => {
               <button onClick={() => deleteItem(item.id)}> X </button>
             </div>
           ))}
-          <h3>
-            {" "}
-            Total de Productos{" "}
-            {cart.map((item) => item.cantidad).reduce((a, b) => a + b)}
-          </h3>
-          <h3>
-            Precio Total{" "}
-            {cart
-              .map((item) => item.price * item.cantidad)
-              .reduce((a, b) => a + b)}
-          </h3>
-          <button onClick={vaciarCarrito}> Vaciar el Carrito</button>
-          <button onClick={finalizarCompra}> Terminar Compra</button>
+          <div className="total">
+            <h3>
+              {" "}
+              Total de Productos:{" "}
+              {cart.map((item) => item.cantidad).reduce((a, b) => a + b)}
+            </h3>
+            <h3>
+              Precio Total: ${" "}
+              {cart
+                .map((item) => item.price * item.cantidad)
+                .reduce((a, b) => a + b)}
+            </h3>
+          </div>
+          <div className="botonCart">
+            <button onClick={vaciarCarrito}> Vaciar el Carrito</button>
+            <button onClick={finalizarCompra}> Terminar Compra</button>
+          </div>
         </>
       )}
     </>
