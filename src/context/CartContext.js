@@ -9,6 +9,10 @@ const CartContextProvider = ({ children }) => {
     .map((item) => item.cantidad)
     .reduce((a, b) => a + b, 0);
 
+  const totalPrice = cart
+    .map((item) => item.price * item.cantidad)
+    .reduce((a, b) => a + b);
+
   const addToCart = (cantidad, item) => {
     if (isOnCart(item.id)) {
       alert("Ya se encuentra en el carrito");
@@ -43,7 +47,14 @@ const CartContextProvider = ({ children }) => {
   console.log(cart);
   return (
     <CartContext.Provider
-      value={{ cart, addToCart, vaciarCarrito, deleteItem, cartAmount }}
+      value={{
+        cart,
+        addToCart,
+        vaciarCarrito,
+        deleteItem,
+        cartAmount,
+        totalPrice,
+      }}
     >
       {children}
     </CartContext.Provider>

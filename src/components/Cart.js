@@ -1,31 +1,55 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
+import { addDoc, collection } from "firebase/firestore";
+import { db } from "../firebase";
 import { Link } from "react-router-dom";
 import { CartContext } from "../context/CartContext";
 import "./Cart.css";
 
 const Cart = () => {
-  const { cart, vaciarCarrito, deleteItem } = useContext(CartContext);
-  const finalizarCompra = () => {
-    const now = new Date();
+  const [buyer, setBuyer] = useState();
+  const [orderId, setOrderId] = useState();
+  const [isLoading, setIsLoading] = useState(false);
+  const [isReady, setIsReady] = useState(false);
+  const { cart, vaciarCarrito, deleteItem, cartAmount, totalPrice } =
+    useContext(CartContext);
+
+  const handleChange = ({ target }) => {
+    setBuyer({
+      ...buyer,
+      [target.name]: target.value,
+    });
+  };
+
+  const saveOrder = (order) => {
+    addDoc(collection(db, "orders"), order)
+      .then((response) => {
+        setOrderId(response.id);
+        vaciarCarrito();
+      })
+      .finally(() => {
+        setIsLoading(false);
+        setIsReady(true);
+      });
+  };
+
+  const finalizarCompra = (e) => {
+    e.preventDefault();
+    setIsLoading(true);
     const compra = {
-      buyer: {
-        name: "Pepe",
-        phone: "26169696385",
-        email: "pepe@gmail.com",
-      },
+      buyer,
       items: cart.map(({ id, title, price }) => ({
         id,
         title,
         price,
       })),
-      date: now.toLocaleDateString(),
-      total: cart
-        .map((item) => item.price * item.cantidad)
-        .reduce((a, b) => a + b),
+      date: new Date().toLocaleDateString(),
+      total: totalPrice,
     };
 
-    console.log(compra);
+    saveOrder(compra);
   };
+
+  if (isReady) return orderId && <p>Tu ID de compra es: {orderId} </p>;
 
   return (
     <>
@@ -43,23 +67,24 @@ const Cart = () => {
               <button onClick={() => deleteItem(item.id)}> X </button>
             </div>
           ))}
+
           <div className="total">
-            <h3>
-              {" "}
-              Total de Productos:{" "}
-              {cart.map((item) => item.cantidad).reduce((a, b) => a + b)}
-            </h3>
-            <h3>
-              Precio Total: ${" "}
-              {cart
-                .map((item) => item.price * item.cantidad)
-                .reduce((a, b) => a + b)}
-            </h3>
+            <h3> Total de Productos: {cartAmount}</h3>
+            <h3>Precio Total: $ {totalPrice}</h3>
           </div>
+
           <div className="botonCart">
-            <button onClick={vaciarCarrito}> Vaciar el Carrito</button>
-            <button onClick={finalizarCompra}> Terminar Compra</button>
+            <button onClick={vaciarCarrito}>Vaciar el Carrito</button>
           </div>
+
+          <form onSubmit={finalizarCompra}>
+            <input name="name" onChange={handleChange} />
+            <input name="email" onChange={handleChange} />
+            <input name="phone" onChange={handleChange} />
+            <button> Terminar Compra</button>
+          </form>
+
+          {isLoading && <p>Guardando tu compra...</p>}
         </>
       )}
     </>
