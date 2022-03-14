@@ -76,12 +76,18 @@ const Cart = () => {
           <div className="botonCart">
             <button onClick={vaciarCarrito}>Vaciar el Carrito</button>
           </div>
-
+          <h2 className="parrafo">
+            {" "}
+            Para finalizar la compra llenar los siguientes Campos
+          </h2>
           <form onSubmit={finalizarCompra}>
+            <h3 className="datos">Nombre y Apellido</h3>
             <input name="name" onChange={handleChange} />
+            <h3 className="datos"> Email </h3>
             <input name="email" onChange={handleChange} />
+            <h3 className="datos"> Celular</h3>
             <input name="phone" onChange={handleChange} />
-            <button> Terminar Compra</button>
+            <button className="terminarCompra"> Terminar Compra</button>
           </form>
 
           {isLoading && <p>Guardando tu compra...</p>}

@@ -11,7 +11,7 @@ const CartContextProvider = ({ children }) => {
 
   const totalPrice = cart
     .map((item) => item.price * item.cantidad)
-    .reduce((a, b) => a + b);
+    .reduce((a, b) => a + b, 0);
 
   const addToCart = (cantidad, item) => {
     if (isOnCart(item.id)) {
