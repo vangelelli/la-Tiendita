@@ -13,4 +13,4 @@ Contactarse al siguiente correo vangelelli@outlook.com
 # Video
 
 ![VideoGif] (public/LaTiendita.gif)
-![VideoGif] (public/LaTiendita-proyectoFinal.gif)
+![VideoGif] (public/LaTiendita-ProyectoTerminado.gif)
